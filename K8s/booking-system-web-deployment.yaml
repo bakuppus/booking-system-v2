@@ -24,7 +24,7 @@ spec:
         app: booking-system-web
     spec:
       containers:
-      - image: kubelancer/booking-system:v2
+      - image: kubelancer/booking-system:v3
         imagePullPolicy: ""
         name: booking-system-web
         ports:
