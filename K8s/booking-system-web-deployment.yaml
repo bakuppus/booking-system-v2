@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    project: sample-web-app
+    project: booking-system-web
   labels:
-    app: web
-  name: web
+    app: booking-system-web
+  name: booking-system-web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: booking-system-web
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,14 +19,14 @@ spec:
   template:
     metadata:
       annotations:
-        project: sample-web-app
+        project: booking-system-web
       labels:
-        app: web
+        app: booking-system-web
     spec:
       containers:
-      - image: kubelancer/simple-web-app:v2
+      - image: kubelancer/booking-system:v2
         imagePullPolicy: ""
-        name: web
+        name: booking-system-web
         ports:
         - containerPort: 80
         resources: {}
@@ -36,14 +36,14 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    project: sample-web-app
+    project: booking-system-web
   labels:
-    app: web
-  name: web-service
+    app: booking-system-web
+  name: booking-system-service
 spec:
   ports:
   - name: "80"
     port: 80
     targetPort: 80
   selector:
-    app: web
+    app: booking-system-web
