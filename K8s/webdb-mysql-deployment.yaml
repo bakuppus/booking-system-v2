@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webdb-mysql-service
+  labels:
+    app: webdb
+spec:
+  ports:
+  - name: "80"
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: webdb
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: webdb-mysql
+  labels:
+    app: webdb
+spec:
+  selector:
+    matchLabels:
+      app: webdb
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webdb
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: "booking_system"
+        - name: MYSQL_USER
+          value: "root"          
+        ports:
+        - containerPort: 3306
+          name: mysql
