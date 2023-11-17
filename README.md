@@ -30,12 +30,18 @@ step 2 docker tag bookingsystem:kv1 palaniyappankannan/bookingsystem:kv1
 step 3
 docker push bookingsystem:kv1 palaniyappankannan/bookingsystem:kv1
 
-step 4: install docker desktop enable kubernetes docker desktop -> settings -> kubernetes -> enable kubernetes
+step 4: 
 
-kubectl get node
-step 5: kubectl create -f booking-system-web-deployment.yaml
+  install docker desktop enable kubernetes docker desktop -> settings -> kubernetes -> enable kubernetes
+
+  kubectl get node
+
+step 5: 
+
+kubectl create -f booking-system-web-deployment.yaml
 
 kubectl create -f booking-system-db-deployment.yaml
+
 step 6 
 
 kubectl port-forward svc/booking-system-service 8080:80
