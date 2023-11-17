@@ -36,7 +36,16 @@ kubectl get node
 step 5: kubectl create -f booking-system-web-deployment.yaml
 
 kubectl create -f booking-system-db-deployment.yaml
-step 6 kubectl port-forward svc/booking-system-service 8080:80
+step 6 
+
+kubectl port-forward svc/booking-system-service 8080:80
 
 kubectl expose svc booking-system-service --name booking-system-service-lb --port=80 --target-port=80 --type=LoadBalancer 
-step 7: kubectl cp booking_system.sql booking-system-db-76d94778b5-txz7h:/tmp/ kubectl exec -it pod/booking-system-db-76d94778b5-txz7h -- bash mysql -u root -p booking_system < booking_system.sql
+
+step 7: 
+
+kubectl cp booking_system.sql booking-system-db-76d94778b5-txz7h:/tmp/ 
+
+kubectl exec -it pod/booking-system-db-76d94778b5-txz7h -- bash 
+
+mysql -u root -p booking_system < booking_system.sql
